@@ -1,0 +1,18 @@
+# rrtmodavg
+*Marco Girardello* (marco.girardello@gmail.com) 
+
+An R package for model selection and multi-model inference for Randomized Response Logistic Regression 
+Models. The package includes functions for model selection using the AIC, BIC, model-averaging of coefficients, predictions and t-scores.
+
+The package can be installed by typing:
+
+```r
+# the devtools package is needed to be able to load the package
+# install.packages("devtools")
+library(devtools)
+install_github("marcog77/rrtmodavg")
+library(GOFmeas)
+``` 
+
+
+
