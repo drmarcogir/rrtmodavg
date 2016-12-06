@@ -6,7 +6,7 @@
 #'  @ index=model selection index to be used i.e. BIC or AIC 
 #'####################################################################
 
-imprrt<-function(intable,index){
+imprrt<-function(intable=NULL,index=NULL){
   if((index=="AIC")==TRUE){
     index=c("weightAIC")
   }

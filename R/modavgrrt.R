@@ -7,7 +7,7 @@
 #'####################################################################
 
 
-modavgrrt<-function(intable,index){
+modavgrrt<-function(intable=NULL,index=NULL){
   if((index=="AIC")==TRUE){
     index=c("weightAIC")
   }

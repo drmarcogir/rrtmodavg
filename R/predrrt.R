@@ -8,7 +8,7 @@
 #'####################################################################
 
 
-predrrt<-function(intable,index){
+predrrt<-function(intable=NULL,index=NULL){
   if((index=="AIC")==TRUE){
     index=c("weightAIC")
   }

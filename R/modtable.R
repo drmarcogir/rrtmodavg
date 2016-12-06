@@ -9,7 +9,7 @@
 #'################################################################################
 
 
-modtable<- function(y, x, df, combos) {
+modtable<- function(y=NULL, x=NULL, df=NULL, combos=NULL) {
   # if combos all do all models
   if(combos=="all"){
     combos=length(x)
