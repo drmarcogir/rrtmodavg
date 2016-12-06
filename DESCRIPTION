@@ -1,0 +1,14 @@
+Package: rrtmodavg
+Type: Package
+Title: Multi-model inference for Randomized Response Logistic Regression
+Version: 0.1
+Date: 2016-12-06
+Author: Marco Girardello
+Maintainer: Marco Girardello <marco.girardello@gmail.com>
+Description: A package to carry model selection and multi-model inference for Randomized Response Logistic Regression
+License: GPL-3
+Depends: 
+    R (>= 3.3.2)
+Encoding: UTF-8
+LazyData: true
+
