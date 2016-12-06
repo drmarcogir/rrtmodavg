@@ -9,7 +9,6 @@
 
 
 imprrt<-function(intable,index){
-  
   if((index=="AIC")==TRUE){
     index=c("weightAIC")
   }
@@ -38,8 +37,6 @@ imprrt<-function(intable,index){
     mod.l<-get(load("models"))
     # results for model objects
     ml<-as.character(tmp$modID)
-    res.ml<-vector("list",length(ml))
-    
     resml<-vector("list",length(ml))
     # loop through each model
     for (y in 1:length(ml)){
