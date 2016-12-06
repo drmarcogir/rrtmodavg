@@ -56,7 +56,7 @@ imprrt<-function(intable,index){
       # store results
       resml[[y]]<-df
     }
-    options(warn = -1)
+    options(warn = -0)
     resml1<-do.call("rbind",resml)
     resml1<-na.exclude(resml1)
     imp<-sum(resml1$rat*resml1$w)/sum(resml1$w)
