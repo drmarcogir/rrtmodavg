@@ -1,4 +1,3 @@
-
 ######################################################################
 #'  @ Function calculating variable importance for rrt models
 #'  @ Created by Marco Girardello 19/05/2016
