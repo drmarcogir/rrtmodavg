@@ -1,6 +1,5 @@
 #'
 #' Calculate variable importance for rrt models
-#' 
 #' @ The function takes the following arguments
 #' @ intable=table from model selection results 
 #' @ index=model selection index to be used i.e. BIC or AIC 
