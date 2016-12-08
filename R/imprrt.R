@@ -1,10 +1,9 @@
-######################################################################
-#'  @ Function calculating variable importance for rrt models
-#'  @ Created by Marco Girardello 19/05/2016
-#'  @ The function takes the following arguments
-#'  @ intable=table from model selection results 
-#'  @ index=model selection index to be used i.e. BIC or AIC 
-#'####################################################################
+#' Calculate variable importance for rrt models
+#'
+#' @ The function takes the following arguments
+#' @ intable=table from model selection results 
+#' @ index=model selection index to be used i.e. BIC or AIC 
+#'
 
 imprrt<-function(intable=NULL,index=NULL){
   if((index=="AIC")==TRUE){
