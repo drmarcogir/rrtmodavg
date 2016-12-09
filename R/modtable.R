@@ -1,19 +1,22 @@
-##################################################################################
-#'  @ Function for computing all possible model combinations using the RRlog function
-#'  @ Created by Marco Girardello 19/05/2016
-#'  @ The function takes the following arguments
+#'  Function for computing all possible model combinations using the RRlog function
+#' 
+#'  
 #'  @ y=character vector containing the name of response 
 #'  @ x= character vector containing the name of the predictors  
 #'  @ df=name of dataframe 
-#'  @ combos= number of variabiable combinations 2-variable models, 3-variable etc.
-#'################################################################################
+#'  @ combos= number of variabiable combinations 2-variable models, 3-variable etc. if all variables 
+#'  @ combinations are desired simply insert "all"
+#'  @ inp = numerical vector containing randomization probability/probabilities
+#'
 
-
-modtable<- function(y=NULL, x=NULL, df=NULL, combos=NULL) {
+modtable<- function(y=NULL, x=NULL, df=NULL, combos=NULL,inp=NULL) {
   # if combos all do all models
   if(combos=="all"){
     combos=length(x)
   }
+   if(is.null(inp)){
+        inp=c(0.1, 0.1)
+    } 
   results.final<-NULL # object where to store model selection table
   mods.final<-vector("list",combos) # object where to store all the models
   totlength <- length(x) # total length of predictors
@@ -29,7 +32,7 @@ modtable<- function(y=NULL, x=NULL, df=NULL, combos=NULL) {
       colnames(restmp) <- c("(Intercept)", x, "AIC","BIC")
       predin1<-paste(predin,collapse="+")       # create formula
       formtmp <- as.formula(paste(y, "~", predin1, collapse = ""))
-      mod <- try(RRlog(formtmp, data = df, model = "FR", p = c(0.1, 0.1), LR.test  =TRUE,fit.n = 1)) # fit model
+      mod <- try(RRlog(formtmp, data = df, model = "FR", p =inp, LR.test  =TRUE,fit.n = 1)) # fit model
       if (class(mod) == "try-error") { # what to do if model did not converge
         failpar <- rep("fail", length(namesest))
         names(failpar) <- namesest
