@@ -70,7 +70,7 @@ modtable<- function(y=NULL, x=NULL, df=NULL, combos=NULL,inp=NULL) {
   # calculate AIC and BIC weights
   write.csv(results.final,file="tmp.csv",row.names=F)
   results.final<-read.csv("tmp.csv")
-  system("rm tmp.csv")
+  removed<-file.remove("tmp.csv")
   results.final1<-subset(results.final,!is.na(BIC)) 
   results.final1$deltaBIC<-results.final1$BIC - min(results.final1$BIC)   # delta BIC
   results.final1$weightBIC<-exp(-results.final1$deltaBIC / 2) / sum(exp(-results.final1$deltaBIC / 2))   # BIC weights
@@ -87,7 +87,7 @@ modtable<- function(y=NULL, x=NULL, df=NULL, combos=NULL,inp=NULL) {
     mod <- try(RRlog(formtmp, data = df, model = "FR", p = c(0.1, 0.1), LR.test  =TRUE,fit.n = 1))
     modname<-names(summary(mod)$coefficients[,1][-1])
     cols <- match(fv[x],colnames(results.final1))  # match with matrix
-    colnames(results.final1)[cols] <- modname
+    colnames(results.final1)[cols] <- fv[x]
   }
   return(results.final1)
 }
