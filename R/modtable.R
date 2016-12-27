@@ -82,12 +82,12 @@ modtable<- function(y=NULL, x=NULL, df=NULL, combos=NULL,inp=NULL) {
   # change column names for factorial variables (same as the ones spat out by the model)
   # change names of columns for factors (match those of the model)
   fv<-paste(names(f[f==TRUE]))
-  for(x in 1:length(fv)){
-    formtmp <- as.formula(paste(y, "~", fv[x], collapse = ""))
+  for(z in 1:length(fv)){
+    formtmp <- as.formula(paste(y, "~", fv[z], collapse = ""))
     mod <- try(RRlog(formtmp, data = df, model = "FR", p = c(0.1, 0.1), LR.test  =TRUE,fit.n = 1))
     modname<-names(summary(mod)$coefficients[,1][-1])
     cols <- match(fv[x],colnames(results.final1))  # match with matrix
-    colnames(results.final1)[cols] <- modname
+    colnames(results.final1)[cols] <- fv[x]
   }
   return(results.final1)
 }
