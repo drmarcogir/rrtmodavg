@@ -19,7 +19,10 @@ modavgrrt<-function(intable=NULL,index=NULL){
     totcols<-1:dim(intable)[2]
     totcols1<-totcols[2:(length(totcols)-7)]
     intable_95a<-intable_95[,totcols1]
-    res.avg<-vector("list",length(totcols1))  
+    # get only data for specific variables
+    nums <- sapply(intable_95a, is.numeric)
+    intable_95a<-intable_95a[ , nums]
+    res.avg<-vector("list",dim(intable_95a)[2])  
     for (i in 1:length(res.avg)){
         n<-c(names(intable_95a)[i],index,"modID") 
         tmp<-data.frame(intable_95a[i],intable_95[,n[2:3]])
