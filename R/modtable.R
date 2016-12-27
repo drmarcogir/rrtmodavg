@@ -87,7 +87,7 @@ modtable<- function(y=NULL, x=NULL, df=NULL, combos=NULL,inp=NULL) {
     mod <- try(RRlog(formtmp, data = df, model = "FR", p = c(0.1, 0.1), LR.test  =TRUE,fit.n = 1))
     modname<-names(summary(mod)$coefficients[,1][-1])
     cols <- match(fv[x],colnames(results.final1))  # match with matrix
-    colnames(results.final1)[cols] <- fv[x]
+    colnames(results.final1)[cols] <- modname
   }
   return(results.final1)
 }
