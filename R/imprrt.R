@@ -63,7 +63,7 @@ imprrt<-function(intable=NULL,index=NULL,method=NULL){
         totcols1<-totcols[1:(length(totcols)-7)]
         intable_95a<-intable_95[,c(totcols1)]      
         intable_95a<-cbind(w=intable_95[,index],intable_95a)
-        intable_95al<-melt(intable_95a,id.vars=c(names(dd)[1:2]))
+        intable_95al<-melt(intable_95a,id.vars=c(names(intable_95a)[1:2]))
         intable_95al1<-na.exclude(intable_95al)
         impfinal<-aggregate(w~variable,data=intable_95al1,FUN=sum)
         res.avg<-impfinal
