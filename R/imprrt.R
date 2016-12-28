@@ -19,7 +19,7 @@ imprrt<-function(intable=NULL,index=NULL,method=NULL){
     totcols1<-totcols[2:(length(totcols)-7)]
     intable_95a<-intable_95[,totcols1]
     res.avg<-NULL  # change into append!
-    for (i in 1:length(res.avg)){
+    for (i in 1:dim(intable_95a)[2]){
         n<-c(names(intable_95a)[i],index,"modID") 
         tmp<-data.frame(intable_95a[i],intable_95[,n[2:3]])
         colnames(tmp)[1]<-names(intable_95a)[i]
@@ -27,8 +27,8 @@ imprrt<-function(intable=NULL,index=NULL,method=NULL){
         mod.l<-get(load("models"))
         ml<-as.character(tmp$modID)
         resml<-NULL
-        for (y in 1:length(ml)){
-            mymod<-mod.l[ml[y]] # get model
+        for (m in 1:length(ml)){
+            mymod<-mod.l[ml[m]] # get model
             options(warn = -1)
             coefst<-summary(mymod[[1]])$coefficients[,3] # summary with coefficients ALL coefficients here
             if(length(coefst)==0){
@@ -38,11 +38,11 @@ imprrt<-function(intable=NULL,index=NULL,method=NULL){
                 dd<-stri_detect_fixed(coefnm, names(intable_95a)[i]) # partial string matching
                 dd1<-coefst[dd] # extract specific coefficients (including factors)
                 rat<-abs(dd1)/max(abs(summary(mymod[[1]])$coefficients[,3][-1])) # calculation of relative importance
-                df<-data.frame(varname=names(rat),rat,w=subset(tmp,modID==ml[y])[,index]) # put together with model weight
+                df<-data.frame(varname=names(rat),rat,w=subset(tmp,modID==ml[m])[,index]) # put together with model weight
                 resml<-rbind(df,resml) 
             }
         }
-        } # end of i loop
+
         options(warn = -0)
         resml1<-na.exclude(resml)
         var.l<-unique(resml1[,c("varname")])
@@ -52,7 +52,8 @@ imprrt<-function(intable=NULL,index=NULL,method=NULL){
         impdf<-data.frame(var=var.l[p],imp)
         res.avg<-rbind(impdf,res.avg)
     }
-        ############################## burnand
+    } # end of i loop   
+    ############################## burnand
     return(res.avg)
     }
 
