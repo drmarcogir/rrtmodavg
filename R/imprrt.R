@@ -4,7 +4,7 @@
 #' @ index=model selection index to be used i.e. BIC or AIC 
 #'
 
-imprrt<-function(intable=NULL,index=NULL){
+imprrt<-function(intable=NULL,index=NULL,method=NULL){
     if((index=="AIC")==TRUE){
         index=c("weightAIC")
     }
@@ -18,7 +18,7 @@ imprrt<-function(intable=NULL,index=NULL){
     totcols<-1:dim(intable)[2]
     totcols1<-totcols[2:(length(totcols)-7)]
     intable_95a<-intable_95[,totcols1]
-    res.avg<-vector("list",length(totcols1))  
+    res.avg<-NULL  # change into append!
     for (i in 1:length(res.avg)){
         n<-c(names(intable_95a)[i],index,"modID") 
         tmp<-data.frame(intable_95a[i],intable_95[,n[2:3]])
@@ -26,24 +26,33 @@ imprrt<-function(intable=NULL,index=NULL){
         tmp<-na.exclude(tmp)
         mod.l<-get(load("models"))
         ml<-as.character(tmp$modID)
-        resml<-vector("list",length(ml))
+        resml<-NULL
         for (y in 1:length(ml)){
-            mymod<-mod.l[ml[y]] 
+            mymod<-mod.l[ml[y]] # get model
             options(warn = -1)
-            coefst<-summary(mymod[[1]])$coefficients[,3]
-            cint<-coefst[c(names(intable_95a)[i])]
-            rat<-abs(cint)/max(abs(summary(mymod[[1]])$coefficients[,3][-1]))  
-            df<-data.frame(rat,w=subset(tmp,modID==ml[y])$weightBIC)
-            resml[[y]]<-df
+            coefst<-summary(mymod[[1]])$coefficients[,3] # summary with coefficients ALL coefficients here
+            if(length(coefst)==0){
+                next
+            }  else {              
+                coefnm<-names(coefst) # extract names
+                dd<-stri_detect_fixed(coefnm, names(intable_95a)[i]) # partial string matching
+                dd1<-coefst[dd] # extract specific coefficients (including factors)
+                rat<-abs(dd1)/max(abs(summary(mymod[[1]])$coefficients[,3][-1])) # calculation of relative importance
+                df<-data.frame(varname=names(rat),rat,w=subset(tmp,modID==ml[y])[,index]) # put together with model weight
+                resml<-rbind(df,resml) 
+            }
         }
+        } # end of i loop
         options(warn = -0)
-        resml1<-do.call("rbind",resml)
-        resml1<-na.exclude(resml1)
-        imp<-sum(resml1$rat*resml1$w)/sum(resml1$w)
-        impdf<-data.frame(var=names(intable_95a)[i],imp)
-        res.avg[[i]]<-impdf
+        resml1<-na.exclude(resml)
+        var.l<-unique(resml1[,c("varname")])
+        for (p in 1:length(var.l)){
+             resml2<-resml1[resml1$varname %in% var.l[p],]
+        imp<-sum(resml2$rat*resml2$w)/sum(resml2$w)
+        impdf<-data.frame(var=var.l[p],imp)
+        res.avg<-rbind(impdf,res.avg)
     }
-    
-    importance.final<-do.call("rbind",res.avg)
-    return(importance.final)
-}
+        ############################## burnand
+    return(res.avg)
+    }
+
