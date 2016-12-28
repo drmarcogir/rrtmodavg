@@ -4,6 +4,7 @@
 #' @ index=model selection index to be used i.e. BIC or AIC 
 #'
 
+
 imprrt<-function(intable=NULL,index=NULL,method=NULL){
     if((index=="AIC")==TRUE){
         index=c("weightAIC")
@@ -43,7 +44,6 @@ imprrt<-function(intable=NULL,index=NULL,method=NULL){
                     resml<-rbind(df,resml) 
                 }
             }
-            
             options(warn = -0)
             resml1<-na.exclude(resml)
             var.l<-unique(resml1[,c("varname")])
@@ -71,4 +71,3 @@ imprrt<-function(intable=NULL,index=NULL,method=NULL){
     
     return(res.avg)
 }
-
