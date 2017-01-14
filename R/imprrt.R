@@ -33,6 +33,9 @@ imprrt<-function(intable=NULL,index=NULL,method=NULL){
             for (m in 1:length(ml)){
                 print(paste("iteration m",m))
                 mymod<-mod.l[ml[m]] # get model
+                if(class(mymod[[1]])=="NULL"){
+                 next
+                }
                 options(warn = -1)
                 coefst<-summary(mymod[[1]])$coefficients[,3] # summary with coefficients ALL coefficients here
                 if(length(coefst)==0){
