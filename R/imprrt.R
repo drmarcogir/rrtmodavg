@@ -13,11 +13,11 @@ imprrt<-function(intable=NULL,index=NULL,method=NULL){
         index=("weightBIC")
     }
     if(method=="cade") {
-        intable$cumsum<-cumsum(intable[,index])
-        rown<-subset(intable,cumsum >= 0.95)
-        rown1<-min(as.numeric(row.names(rown)))
-        intable_95<-intable[1:rown1,]
-        totcols<-1:dim(intable)[2]
+        intable$cumsum<-cumsum(intable[,index]) # cumulative sum
+        rown<-subset(intable,cumsum >= 0.95) # 0.95 cumulative weight
+        rown1<-min(as.numeric(row.names(rown))) # minimum row
+        intable_95<-intable[1:rown1,] # subset by row
+        totcols<-1:dim(intable)[2] # columns 
         totcols1<-totcols[2:(length(totcols)-7)]
         intable_95a<-intable_95[,totcols1]
         res.avg<-NULL  # change into append!
@@ -44,6 +44,9 @@ imprrt<-function(intable=NULL,index=NULL,method=NULL){
                     coefnm<-names(coefst) # extract names
                     dd<-stri_detect_fixed(coefnm, names(intable_95a)[i]) # partial string matching
                     dd1<-coefst[dd] # extract specific coefficients (including factors)
+                     if(length(dd1)==0){
+                    next
+                     } 
                     rat<-abs(dd1)/max(abs(summary(mymod[[1]])$coefficients[,3][-1])) # calculation of relative importance
                     df<-data.frame(varname=names(rat),rat,w=subset(tmp,modID==ml[m])[,index]) # put together with model weight
                     resml<-rbind(df,resml) 

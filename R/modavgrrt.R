@@ -24,7 +24,10 @@ modavgrrt<-function(intable=NULL,index=NULL){
     intable_95a<-intable_95a[ , nums]
     res.avg<-vector("list",dim(intable_95a)[2])  
     for (i in 1:length(res.avg)){
-        n<-c(names(intable_95a)[i],index,"modID") 
+        n<-c(names(intable_95a)[i],index,"modID")
+        if(i==1){
+        colnames(intable_95a)[1]<-c("(Intercept)")    
+        }
         tmp<-data.frame(intable_95a[i],intable_95[,n[2:3]])
         colnames(tmp)[1]<-names(intable_95a)[i]
         tmp<-na.exclude(tmp)
