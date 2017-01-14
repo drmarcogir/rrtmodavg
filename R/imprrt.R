@@ -22,7 +22,6 @@ imprrt<-function(intable=NULL,index=NULL,method=NULL){
         intable_95a<-intable_95[,totcols1]
         res.avg<-NULL  # change into append!
         for (i in 1:dim(intable_95a)[2]){
-            print(paste("iteration i",i))
             n<-c(names(intable_95a)[i],index,"modID") 
             tmp<-data.frame(intable_95a[i],intable_95[,n[2:3]])
             colnames(tmp)[1]<-names(intable_95a)[i]
@@ -31,7 +30,6 @@ imprrt<-function(intable=NULL,index=NULL,method=NULL){
             ml<-as.character(tmp$modID)
             resml<-NULL
             for (m in 1:length(ml)){
-                print(paste("iteration m",m))
                 mymod<-mod.l[ml[m]] # get model
                 if(class(mymod[[1]])=="NULL"){
                  next
