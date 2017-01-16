@@ -56,12 +56,12 @@ modtable<- function(y=NULL, x=NULL, df=NULL, combos=NULL,inp=NULL) {
       }  # close else statement
       return(list(mod,restmp))
     }
-    sfInit(parallel=TRUE, cpus=7)
-    sfLibrary('rrtmodavg', character.only=TRUE)
-    sfExport('tmpl')
-    res<-sfLapply(tmpl, fm)
-    sfStop( nostop=FALSE )
-#    res<-lapply(tmpl,fm) # fit models usint list of formulae
+#   sfInit(parallel=TRUE, cpus=7)
+#   sfLibrary('rrtmodavg', character.only=TRUE)
+#   sfExport('tmpl')
+#   res<-sfLapply(tmpl, fm)
+#    sfStop( nostop=FALSE )
+   res<-lapply(tmpl,fm) # fit models usint list of formulae
     mods<-sapply(res, `[`,1)
     pars<-sapply(res, `[`,2)
     pars1<-do.call("rbind",pars) # create data frame from list
