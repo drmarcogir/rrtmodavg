@@ -34,8 +34,8 @@ modtable<- function(y=NULL, x=NULL, df=NULL, combos=NULL,inp=NULL) {
       formtmp <- as.formula(paste(y, "~", predin1, collapse = ""))
       mod <- try(RRlog(formtmp, data = df, model = "FR", p =inp, LR.test  =TRUE,fit.n = 1)) # fit model
       if (class(mod) == "try-error") { # what to do if model did not converge
-        failpar <- rep("fail", length(namesest))
-        names(failpar) <- namesest
+        failpar <- rep("fail", length(predin))
+        names(failpar) <- predin
         cols <- match(names(failpar),colnames(restmp)) # match with matrix
         restmp[1, cols] <- failpar
       } else {
@@ -56,10 +56,12 @@ modtable<- function(y=NULL, x=NULL, df=NULL, combos=NULL,inp=NULL) {
       }  # close else statement
       return(list(mod,restmp))
     }
-#   sfInit(parallel=TRUE, cpus=7)
-#   sfLibrary('rrtmodavg', character.only=TRUE)
-#   sfExport('tmpl')
-#   res<-sfLapply(tmpl, fm)
+#    sfInit(parallel=TRUE, cpus=7)
+#    sfLibrary('rrtmodavg', character.only=TRUE)
+#    sfExport('totlength')
+#    sfExport('x')
+#    sfExport('y')
+#    res<-sfLapply(tmpl, fm)
 #    sfStop( nostop=FALSE )
    res<-lapply(tmpl,fm) # fit models usint list of formulae
     mods<-sapply(res, `[`,1)
