@@ -20,8 +20,8 @@ modavgrrt<-function(intable=NULL,index=NULL,bin.factors=TRUE){
     totcols1<-totcols[2:(length(totcols)-7)]
     intable_95a<-intable_95[,totcols1]
     # get only data for specific variables
-    nums <- sapply(intable_95a, is.numeric)
-    intable_95a<-intable_95a[ , nums]
+#    nums <- sapply(intable_95a, is.numeric)
+#   intable_95a<-intable_95a[ , nums]
     res.avg<-vector("list",dim(intable_95a)[2])  
     for (i in 1:length(res.avg)){
         if(i==1){
