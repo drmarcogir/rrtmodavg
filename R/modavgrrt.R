@@ -51,7 +51,7 @@ modavgrrt<-function(intable=NULL,index=NULL,bin.factors=TRUE){
         }
         options(warn = -0)
         res.ml1<-do.call("rbind",res.ml) 
-        findf<-merge(res.ml1[2:4],tmp[2:3]) 
+        findf<-merge(res.ml1,tmp[2:3]) 
         findf1<-par.avg(x=findf$par,se=findf$se,weight=findf[,index]) 
         findf1<-data.frame(variable=names(intable_95a)[i],t(as.data.frame(findf1))) 
         res.avg[[i]]<-findf1 
