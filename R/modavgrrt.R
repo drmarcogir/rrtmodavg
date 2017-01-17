@@ -5,7 +5,7 @@
 #'  @ intable=table from model selection results 
 #'  @ index=model selection index to be used i.e. BIC or AIC 
 #'####################################################################
-modavgrrt<-function(intable=NULL,index=NULL){
+modavgrrt<-function(intable=NULL,index=NULL,bin.factors=TRUE){
     if((index=="AIC")==TRUE){
         index=c("weightAIC")
     }
@@ -24,10 +24,10 @@ modavgrrt<-function(intable=NULL,index=NULL){
     intable_95a<-intable_95a[ , nums]
     res.avg<-vector("list",dim(intable_95a)[2])  
     for (i in 1:length(res.avg)){
-        n<-c(names(intable_95a)[i],index,"modID")
         if(i==1){
         colnames(intable_95a)[1]<-c("(Intercept)")    
         }
+        n<-c(names(intable_95a)[i],index,"modID")
         tmp<-data.frame(intable_95a[i],intable_95[,n[2:3]])
         colnames(tmp)[1]<-names(intable_95a)[i]
         tmp<-na.exclude(tmp)
@@ -43,7 +43,8 @@ modavgrrt<-function(intable=NULL,index=NULL){
             } else {
                 tmpdf$name<-row.names(tmpdf)
                 namedf<-data.frame(name=names(intable_95a)[i])
-                pardf<-merge(namedf,tmpdf)
+                dd<-stri_detect_fixed(tmpdf$name,names(intable_95a)[i]) # partial string matching
+                pardf<-tmpdf[dd,]
                 pardf<-data.frame(pardf,modID=ml[y])
                 res.ml[[y]]<-pardf
             }
