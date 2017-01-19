@@ -38,10 +38,18 @@ imprrt<-function(intable=NULL,index=NULL,method=NULL){
                 coefst<-summary(mymod[[1]])$coefficients[,3] # summary with coefficients ALL coefficients here
                 if(length(coefst)==0){
                     next
-                }  else {              
-                    coefnm<-names(coefst) # extract names
-                    dd<-stri_detect_fixed(coefnm, names(intable_95a)[i]) # partial string matching
-                    dd1<-coefst[dd] # extract specific coefficients (including factors)
+                }  else {
+                coefnm<-names(coefst) 
+                fact <- sapply(intable_95a, is.factor) # extract factors
+                if((fact[names(intable_95a)[i]])==TRUE){
+                dd<-stri_detect_fixed(tmpdf$name,names(intable_95a)[i]) # partial string matching
+                dd1<-coefst[dd]
+                } else {
+                dd1<-coefst[dd]
+                }
+#  coefnm<-names(coefst) # extract names
+#dd<-stri_detect_fixed(coefnm, names(intable_95a)[i]) # partial string matching
+#dd1<-coefst[dd] # extract specific coefficients (including factors)
                      if(length(dd1)==0){
                     next
                      } 
