@@ -45,7 +45,7 @@ imprrt<-function(intable=NULL,index=NULL,method=NULL){
                 coefnm<-names(coefst) 
                 fact <- sapply(intable_95a, is.factor) # extract factors
                 if((fact[names(intable_95a)[i]])==TRUE){
-                dd<-stri_detect_fixed(tmpdf$name,names(intable_95a)[i]) # partial string matching
+                dd<-stri_detect_fixed(coefnm,names(intable_95a)[i]) # partial string matching
                 dd1<-coefst[dd]
                 } else {
                 dd1<-coefst[names(intable_95a)[i]]
