@@ -40,7 +40,7 @@ imprrt<-function(intable=NULL,index=NULL,method=NULL){
                 options(warn = -1)
                 coefst<-summary(mymod[[1]])$coefficients[,3] # summary with coefficients ALL coefficients here
                 if(length(coefst)==0){
-                    next
+                next
                 }  else {
                 coefnm<-names(coefst) 
                 fact <- sapply(intable_95a, is.factor) # extract factors
