@@ -20,7 +20,7 @@ modavgrrt<-function(intable=NULL,index=NULL,bin.factors=TRUE){
     totcols1<-totcols[2:(length(totcols)-7)]
     intable_95a<-intable_95[,totcols1]
     # get only data for specific variables
-#    nums <- sapply(intable_95a, is.numeric)
+#   nums <- sapply(intable_95a, is.numeric)
 #   intable_95a<-intable_95a[ , nums]
     res.avg<-vector("list",dim(intable_95a)[2])  
     for (i in 1:length(res.avg)){
@@ -43,24 +43,33 @@ modavgrrt<-function(intable=NULL,index=NULL,bin.factors=TRUE){
             } else {
                 tmpdf$name<-row.names(tmpdf)
                 namedf<-data.frame(name=names(intable_95a)[i])
+                totlength<-length(names(intable_95a)[i])
+                fact <- sapply(intable_95a, is.factor) # extract factors
+                if((fact[names(intable_95a)[i]])==TRUE){
                 dd<-stri_detect_fixed(tmpdf$name,names(intable_95a)[i]) # partial string matching
                 pardf<-tmpdf[dd,]
                 pardf<-data.frame(pardf,modID=ml[y])
                 res.ml[[y]]<-pardf
+                } else {
+                pardf<-tmpdf[names(intable_95a)[i],]
+                pardf<-data.frame(pardf,modID=ml[y])
+                res.ml[[y]]<-pardf
+                }
             }
         }
         options(warn = -0)
         res.ml1<-do.call("rbind",res.ml) 
         findf<-merge(res.ml1,tmp[2:3]) 
-        findf1<-par.avg(x=findf$par,se=findf$se,weight=findf[,index]) 
-        findf1<-data.frame(variable=unique(findf$name),t(as.data.frame(findf1))) 
-        res.avg[[i]]<-findf1 
+        findf1<-par.avg(x=findf$par,se=findf$se,weight=findf[,index])
+        findf2<-data.frame(variable=unique(findf$name),as.data.frame(findf1),type=names(findf1))
+        findf3<-spread(findf2,type,findf1)
+        res.avg[[i]]<-findf3 
     }
     
     table<-do.call("rbind",res.avg)
-    row.names(table)<-1:dim(table)[1]
-    table1<-table[,-c(4)]
-    return(table1)
+    table1<-table[,-c(2)]
+    table2<-table1[,c(1,2,4,3,5)]
+    return(table2)
 }
 
 
