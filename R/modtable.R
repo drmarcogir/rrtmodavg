@@ -27,9 +27,10 @@ modtable<- function(y=NULL, x=NULL, df=NULL, combos=NULL,inp=NULL) {
      # split combinations into list
     tmpl<-split(tmp, seq(nrow(tmp)))
     names(tmpl)<-paste("mod_",i,"_",1:dim(tmp)[1],sep="") # labels for models
+    ######################################################################
     fm<-function(predin){   # function for model fitting
       restmp <- matrix(nrow = 1, ncol = totlength + 3)  # matrix to store resuls
-      colnames(restmp) <- c("(Intercept)", x, "AIC","BIC")
+     colnames(restmp) <- c("(Intercept)", x, "AIC","BIC")
       predin1<-paste(predin,collapse="+")       # create formula
       formtmp <- as.formula(paste(y, "~", predin1, collapse = ""))
       mod <- try(RRlog(formtmp, data = df, model = "FR", p =inp, LR.test  =TRUE,fit.n = 1)) # fit model
@@ -56,14 +57,21 @@ modtable<- function(y=NULL, x=NULL, df=NULL, combos=NULL,inp=NULL) {
       }  # close else statement
       return(list(mod,restmp))
     }
-#    sfInit(parallel=TRUE, cpus=7)
-#    sfLibrary('rrtmodavg', character.only=TRUE)
+    ############################
+    sfInit(parallel=TRUE, cpus=6)
+#    sfLibrary('rrtmodavg')
+    sfExportAll()
 #    sfExport('totlength')
+#    sfExport('RRlog',local=FALSE )
 #    sfExport('x')
 #    sfExport('y')
-#    res<-sfLapply(tmpl, fm)
-#    sfStop( nostop=FALSE )
-   res<-lapply(tmpl,fm) # fit models usint list of formulae
+#    sfExport('tmpl')
+#    sfExport('df')
+#    sfExport('inp')
+    res<-sfLapply(tmpl, fm)
+    sfStop( nostop=FALSE )
+    
+#   res<-lapply(tmpl,fm) # fit models usint list of formulae
     mods<-sapply(res, `[`,1)
     pars<-sapply(res, `[`,2)
     pars1<-do.call("rbind",pars) # create data frame from list
