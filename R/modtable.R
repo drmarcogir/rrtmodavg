@@ -33,7 +33,7 @@ modtable<- function(y=NULL, x=NULL, df=NULL, combos=NULL,inp=NULL) {
      colnames(restmp) <- c("(Intercept)", x, "AIC","BIC")
       predin1<-paste(predin,collapse="+")       # create formula
       formtmp <- as.formula(paste(y, "~", predin1, collapse = ""))
-      mod <- try(RRlog(formtmp, data = df, model = "FR", p =inp, LR.test  =TRUE,fit.n = 1)) # fit model
+      mod <- RRlog(formtmp, data = df, model = "FR", p =inp, LR.test  =TRUE,fit.n = 1) # fit model
       if (class(mod) == "try-error") { # what to do if model did not converge
         failpar <- rep("fail", length(predin))
         names(failpar) <- predin
@@ -59,15 +59,13 @@ modtable<- function(y=NULL, x=NULL, df=NULL, combos=NULL,inp=NULL) {
     }
     ############################
     sfInit(parallel=TRUE, cpus=6)
-#    sfLibrary('rrtmodavg')
-    sfExportAll()
-#    sfExport('totlength')
-#    sfExport('RRlog',local=FALSE )
-#    sfExport('x')
-#    sfExport('y')
-#    sfExport('tmpl')
-#    sfExport('df')
-#    sfExport('inp')
+    sfLibrary('RRreg',character.only=TRUE)
+    sfExport('totlength',"y","x","tmpl","df","inp","f")
+#     sfExport('x')
+#     sfExport('y')
+#     sfExport('tmpl')
+#     sfExport('df')
+#     sfExport('inp')
     res<-sfLapply(tmpl, fm)
     sfStop( nostop=FALSE )
     
