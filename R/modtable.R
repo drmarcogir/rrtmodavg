@@ -58,18 +58,18 @@ modtable<- function(y=NULL, x=NULL, df=NULL, combos=NULL,inp=NULL) {
       return(list(mod,restmp))
     }
     ############################
-    sfInit(parallel=TRUE, cpus=6)
-    sfLibrary('RRreg',character.only=TRUE)
-    sfExport('totlength',"y","x","tmpl","df","inp","f")
+#   sfInit(parallel=TRUE, cpus=6)
+#   sfLibrary('RRreg',character.only=TRUE)
+#   sfExport('totlength',"y","x","tmpl","df","inp","f")
 #     sfExport('x')
 #     sfExport('y')
 #     sfExport('tmpl')
 #     sfExport('df')
 #     sfExport('inp')
-    res<-sfLapply(tmpl, fm)
-    sfStop( nostop=FALSE )
+#    res<-sfLapply(tmpl, fm)
+#    sfStop( nostop=FALSE )
     
-#   res<-lapply(tmpl,fm) # fit models usint list of formulae
+   res<-lapply(tmpl,fm) # fit models usint list of formulae
     mods<-sapply(res, `[`,1)
     pars<-sapply(res, `[`,2)
     pars1<-do.call("rbind",pars) # create data frame from list
