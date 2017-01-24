@@ -87,7 +87,8 @@ comb<-rbind(ones,zeroes1)
     pars2<-cbind(modID=names(pars),pars1)
     results.final<-rbind(pars2,results.final) # bind results to data frame
     mods.final<-c(mods,mods.final)
-  }
+  } # end of i loop
+} # end of h loop
   # save model objects
   mods.final1<-unlist(mods.final, recursive = FALSE)
   save(mods.final1,file="models")
