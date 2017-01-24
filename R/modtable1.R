@@ -9,7 +9,7 @@
 #'  @ inp = numerical vector containing randomization probability/probabilities
 #'
 
-modtable<- function(y=NULL, x=NULL, df=NULL, combos=NULL,inp=NULL,rep=NULL) {
+modtable1<- function(y=NULL, x=NULL, df=NULL, combos=NULL,inp=NULL,rep=NULL) {
   # if combos all do all models
   if(combos=="all"){
     combos=length(x)
