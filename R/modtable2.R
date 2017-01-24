@@ -64,12 +64,6 @@ eachres<-foreach (i=1:dim(tmp)[1],.errorhandling=c('remove'))%dopar% {
      formtmp <- as.formula(paste(y, "~", paste(tmp[i, ], collapse = "+")))
      namesest <- c("(Intercept)", paste(tmp[i, ]), "AIC")
       mod <- RRlog(formtmp, data = df, model = "FR", p =inp, LR.test  =TRUE,fit.n = 1) # fit model
-      if (class(mod) == "try-error") { # what to do if model did not converge
-        failpar <- rep("fail", length(predin))
-        names(failpar) <- namesest
-        cols <- match(names(failpar),colnames(restmp)) # match with matrix
-        restmp[1, cols] <- failpar
-      } else {
         n = length(tmp[i, ]) + 1
         aic = -2 * mod$logLik + 2 * n  # AIC
         bic=-2 * mod$logLik + log(dim(df)[1])*n
@@ -84,7 +78,6 @@ eachres<-foreach (i=1:dim(tmp)[1],.errorhandling=c('remove'))%dopar% {
         names(resv1)[length(names(resv1))-1] <- "AIC"   # rename element before last
         cols <- match(names(resv1),colnames(restmp))  # match with matrix
         restmp[1, cols] <- resv1
-      }  # close else statement
       finres<-list(mod,restmp)
      names(finres)<-rep(row.names(tmp[i, ]),2)
       finres
