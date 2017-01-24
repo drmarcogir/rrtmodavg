@@ -29,7 +29,7 @@ modtable2<- function(y=NULL, x=NULL, df=NULL, combos=NULL,inp=NULL,nrep=NULL) {
 ####################################
 # rep
 #results<-foreach (h=1:2,.errorhandling=c('remove'),.combine="cbind") %:% 
-for (h in 1:2){
+for (h in 1:nrep){
 print(paste("random sample set ",h,sep=""))  
 ones<-subset(df,RRT2_all==1)
 zeroes<-subset(df,RRT2_all==0)
@@ -43,7 +43,7 @@ comb<-rbind(ones,zeroes1)
 ####################################
 #foreach (p=1:2,.errorhandling=c('remove')) %dopar% {
 
-for (p in 1:2){ 
+for (p in 1:combos){ 
 
 print(paste(p,"-variable models",sep=""))
 tmp <- combinations(totlength, p, x) # create model combinations
