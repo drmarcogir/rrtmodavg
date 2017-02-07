@@ -31,7 +31,9 @@ imp_rep1<-function(intable=NULL,index=NULL,modfilt=NULL,runid=NULL){
     results1<-aggregate(weight~variable,data=results,FUN=mean)
     colnames(results1)[2]<-c("importance")
 }
-    
+return(results1)
+}
+
         
         
         
