@@ -5,7 +5,6 @@
 #'
 
 imp_rep1<-function(intable=NULL,index=NULL,modfilt=NULL,runid=NULL){
-    mod.l<-get(load("models"))
     results<-NULL                  # store results of predictions
     iter.l<-unique(intable[,runid])  # list ID for iterations
     for (x in 1:length(iter.l)){      # loop through randomized model iterations 
