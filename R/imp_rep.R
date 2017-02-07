@@ -32,5 +32,6 @@ predrrt_rep<-function(intable=NULL,index=NULL,modfilt=NULL,runid=NULL){
         
     }  
     results1<-aggregate(count~variable,FUN=mean,data=results)
-    
+return(results1)
+}
     
