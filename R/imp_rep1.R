@@ -12,15 +12,19 @@ imp_rep1<-function(intable=NULL,index=NULL,modfilt=NULL,runid=NULL){
         tmp$delta<-tmp[,index] - min(tmp[,index])
         tmp$weight<-exp(-tmp$delta/ 2) / sum(exp(-tmp$delta / 2)) 
         if(modfilt==1){
-            tmp$cumsum<-cumsum(tmp$weight)
+           tmp$cumsum<-cumsum(tmp$weight)
             rown<-subset(tmp,cumsum >= 0.95)
             modsubset<-intable[intable$modID %in% rown$modID,]
         } 
         if(modfilt==2){
-            tmp1<-subset(tmp,delta < 4)
+            tmp<-subset(tmp,delta < 4)
             modsubset<-intable[intable$modID %in% tmp1$modID,]   
         } 
+        if(modfilt==3){
+            tmp<-intable 
+        } 
         
+        tmp1<-tmp
         tmp2<-melt(tmp1[,c(1,3:15,26)],id.vars=c("modID","weight"))
         tmp3<-na.exclude(tmp2)
         impfinal<-aggregate(weight~variable,data=tmp3,FUN=sum)

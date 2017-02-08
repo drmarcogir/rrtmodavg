@@ -22,7 +22,9 @@ imp_rep<-function(intable=NULL,index=NULL,modfilt=NULL,runid=NULL){
             tmp1<-subset(tmp,delta < 4)
             modsubset<-intable[intable$modID %in% tmp1$modID,] 
         } 
-        
+        if(modfilt==3){
+            modsubset<-intable 
+        } 
         tmp2<-melt(modsubset[,c(1,3:15)],id.vars=c("modID"))
         tmp3<-subset(tmp2,!is.na(value))
         tmp4<-ddply(tmp3,.(variable),nrow)
