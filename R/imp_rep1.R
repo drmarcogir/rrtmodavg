@@ -21,11 +21,10 @@ imp_rep1<-function(intable=NULL,index=NULL,modfilt=NULL,runid=NULL){
             modsubset<-intable[intable$modID %in% tmp1$modID,]   
         } 
         if(modfilt==3){
-            tmp<-intable 
+            modsubset<-tmp 
         } 
         
-        tmp1<-tmp
-        tmp2<-melt(tmp1[,c(1,3:15,26)],id.vars=c("modID","weight"))
+        tmp2<-melt(modsubset[,c(1,3:15,26)],id.vars=c("modID","weight"))
         tmp3<-na.exclude(tmp2)
         impfinal<-aggregate(weight~variable,data=tmp3,FUN=sum)
         impfinal1<-data.frame(impfinal,iteration=x)

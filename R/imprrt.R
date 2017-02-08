@@ -6,6 +6,7 @@
 
 
 imprrt<-function(intable=NULL,index=NULL,method=NULL){
+    mod.l<-get(load("models"))
     if((index=="AIC")==TRUE){
         index=c("weightAIC")
     }
@@ -29,7 +30,6 @@ imprrt<-function(intable=NULL,index=NULL,method=NULL){
             tmp<-data.frame(intable_95a[i],intable_95[,n[2:3]])
             colnames(tmp)[1]<-names(intable_95a)[i]
             tmp<-na.exclude(tmp)
-            mod.l<-get(load("models"))
             ml<-as.character(tmp$modID)
             resml<-NULL
             for (m in 1:length(ml)){
