@@ -26,7 +26,9 @@ predrrt_rep<-function(intable=NULL,index=NULL,modfilt=NULL,runid=NULL){
             modsubset<-intable[intable$modID %in% tmp1$modID,]   
         } 
         # get models
-        
+        if(modfilt==3){
+            modsubset<-tmp   
+        } 
         # get predictions
         pred.vec<-vector("list",dim(modsubset)[1])
         modsubset$modID1<-paste(modsubset$modID,".fitted",sep="")
