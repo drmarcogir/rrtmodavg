@@ -40,6 +40,7 @@ The function can optionally generate specific model combinations e.g. models con
 
 # fit model to dummy dataset
 modtab<- modtable(y = "response", x = c("pred1","pred2","pred3","pred4"),df=dummy, combos ="all")
+
 # print first six rows of results
 head(modtab)
     modID (Intercept)      pred1      pred2         pred3     pred4      AIC      BIC  deltaBIC    weightBIC deltaAIC  weightAIC
@@ -53,10 +54,10 @@ head(modtab)
 ```
 ## Model averaging based on an information criterion
 ```r
+# perform model averaging
 modavgres<-modavgrrt(intable=modtab,index="BIC")
 
 # print first six rows of results
-
 head(modavgres)
      variable   Coefficient          SE     Lower CI     Upper CI
 1 (Intercept) -4.0654192753 1.365341617 -6.741439672 -1.389398879
