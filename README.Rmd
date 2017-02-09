@@ -16,7 +16,7 @@ library(rrtmodavg)
 
 # Example usage
 What follows is some simple examples of how this package can be used to collected using a randomized response
-design, using a dummy dataset. 
+design. 
 
 
 
