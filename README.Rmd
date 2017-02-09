@@ -23,4 +23,6 @@ What follows is some simple examples of how this package can be used to analyse 
 library(RRreg);library(rrtmodavg)
 ```
 
-## Partitioning of beta diversity 
+## Automated model selection
+The function `modtable()` generates all possible model combinations starting from a set of global set of predictors.
+The function can optional generate 
