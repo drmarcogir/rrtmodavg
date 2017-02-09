@@ -59,6 +59,7 @@ modavgres<-modavgrrt(intable=modtab,index="BIC")
 
 # print first six rows of results
 head(modavgres)
+
      variable   Coefficient          SE     Lower CI     Upper CI
 1 (Intercept) -4.0654192753 1.365341617 -6.741439672 -1.389398879
 2       pred1  0.1975238577 0.226100510 -0.245624999  0.640672715
