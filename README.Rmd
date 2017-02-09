@@ -21,6 +21,7 @@ What follows is some simple examples of how this package can be used to analyse 
 
 ```{r packages, message=FALSE}
 library(RRreg);library(rrtmodavg)
+library(gtools)
 ```
 
 ## Automated model selection
@@ -28,4 +29,17 @@ The function `modtable()` generates all possible model combinations and ranks th
 The function can optionally generate specific model combinations e.g. models containing all 
 3-variable combinations, 4-variable combinations etc. 
 
+```r
+# fit model to dummy dataset
+modtab<- modtable(y = "response", x = c("pred1","pred2","pred3","pred4"),df=dummy, combos ="all")
+# print results
+head(modtab)
+    modID (Intercept)      pred1      pred2         pred3     pred4      AIC      BIC  deltaBIC    weightBIC deltaAIC  weightAIC
+1 mod_4_1   -4.333207 0.04043779 0.07148832 -6.515456e-05 0.4344719 435.9528 455.0234 14.537721 0.0004554068 3.956570 0.04097879
+2 mod_3_1   -3.617275 0.28487327 0.08646057 -1.407753e-04        NA 438.4724 453.7289 13.243189 0.0008699683 6.476169 0.01162613
+3 mod_3_2   -4.337472 0.04026171 0.07152153            NA 0.4345677 433.9532 449.2097  8.724007 0.0083335762 1.956987 0.11136869
+4 mod_3_3   -4.512808 0.06138911         NA -2.914202e-04 0.4914335 436.7506 452.0071 11.521423 0.0020576913 4.754403 0.02749868
+5 mod_3_4   -4.157229         NA 0.07205292 -3.372099e-05 0.4599640 433.9961 449.2526  8.766909 0.0081567161 1.999889 0.10900516
+6 mod_2_1   -3.628225 0.28483653 0.08654198            NA        NA 436.4745 447.9169  7.431177 0.0159061784 4.478287 0.03156964
 
+```
