@@ -30,6 +30,11 @@ The function can optionally generate specific model combinations e.g. models con
 3-variable combinations, 4-variable combinations etc. 
 
 ```r
+#' @ y = character vector specifying the name of column containing data for the response variable (binary) 
+#' @ x = character vector specifying column names containing data for the predictor variables
+#' @ df =dataframe name containing predictor and response variables
+#' @ combos = integer. desired variable combinations. 
+
 # fit model to dummy dataset
 modtab<- modtable(y = "response", x = c("pred1","pred2","pred3","pred4"),df=dummy, combos ="all")
 # print results
@@ -43,3 +48,5 @@ head(modtab)
 6 mod_2_1   -3.628225 0.28483653 0.08654198            NA        NA 436.4745 447.9169  7.431177 0.0159061784 4.478287 0.03156964
 
 ```
+
+
