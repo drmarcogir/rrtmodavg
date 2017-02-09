@@ -23,4 +23,4 @@ What follows is some simple examples of how this package can be used to analyse 
 library(RRreg);library(rrtmodavg)
 ```
 
-
+## Partitioning of beta diversity 
