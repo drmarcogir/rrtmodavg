@@ -60,7 +60,7 @@ Burnham & Anderson (2009). Model averaging is performed on a 95% confidence set.
 # perform model averaging
 modavgres<-modavgrrt(intable=modtab,index="BIC")
 
-# print first six rows of results
+# print results
 head(modavgres)
 
      variable   Coefficient          SE     Lower CI     Upper CI
@@ -76,6 +76,17 @@ head(modavgres)
 
 
 ```r
+# calculate relative importance of predictors
+modimp<-imprrt(intable=modtab,index="BIC",method="cade")
+
+# print results
+head(modimp)
+          var        imp
+1       pred4 1.00000000
+2       pred3 0.03710603
+3       pred2 0.58083567
+4       pred1 0.47866592
+
 ```
 
 
