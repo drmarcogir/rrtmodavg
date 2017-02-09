@@ -53,6 +53,9 @@ head(modtab)
 
 ```
 ## Model averaging based on an information criterion
+The function `modavgrrt()` performs model averaging following the methods proposed by
+Burnham & Anderson (2009). Model averaging is performed on a 95% confidence set.
+
 ```r
 # perform model averaging
 modavgres<-modavgrrt(intable=modtab,index="BIC")
@@ -69,7 +72,12 @@ head(modavgres)
 
 ```
 
-## Relative importance of predictors  
+## Relative importance of predictors
+
+
+```r
+```
+
 
 ## Compute model-averaged predictions 
 
