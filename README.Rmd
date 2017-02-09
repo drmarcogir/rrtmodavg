@@ -22,7 +22,8 @@ What follows is some simple examples of how this package can be used to analyse 
 
 ```{r packages, message=FALSE}
 library(RRreg);library(rrtmodavg)
-library(gtools)
+library(gtools);library(MuMIn)
+library(tidyr)
 ```
 
 ## Automated model selection
@@ -39,7 +40,7 @@ The function can optionally generate specific model combinations e.g. models con
 
 # fit model to dummy dataset
 modtab<- modtable(y = "response", x = c("pred1","pred2","pred3","pred4"),df=dummy, combos ="all")
-# print results
+# print first six rows of results
 head(modtab)
     modID (Intercept)      pred1      pred2         pred3     pred4      AIC      BIC  deltaBIC    weightBIC deltaAIC  weightAIC
 1 mod_4_1   -4.333207 0.04043779 0.07148832 -6.515456e-05 0.4344719 435.9528 455.0234 14.537721 0.0004554068 3.956570 0.04097879
@@ -51,6 +52,20 @@ head(modtab)
 
 ```
 ## Model averaging based on an information criterion
+```r
+modavgres<-modavgrrt(intable=modtab,index="BIC")
+
+# print first six rows of results
+
+head(modavgres)
+     variable   Coefficient          SE     Lower CI     Upper CI
+1 (Intercept) -4.0654192753 1.365341617 -6.741439672 -1.389398879
+2       pred1  0.1975238577 0.226100510 -0.245624999  0.640672715
+3       pred2  0.0796533786 0.044124767 -0.006829576  0.166136333
+4       pred3 -0.0001932845 0.003133355 -0.006334548  0.005947979
+5       pred4  0.5153739607 0.174383022  0.173589519  0.857158403
+
+```
 
 ## Relative importance of predictors  
 
