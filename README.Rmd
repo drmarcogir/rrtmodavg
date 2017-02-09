@@ -92,7 +92,10 @@ head(impres)
 
 ## Compute model-averaged predictions 
 ```r
+# calculate model-averaged fitted values
 fitres<-predrrt(intable=modtab,index="BIC")
+
+# print the first six values
 head(fitres)
 [1] 0.3674067 0.2862663 0.2492794 0.1649464 0.2559161 0.2531186
 
