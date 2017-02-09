@@ -49,5 +49,11 @@ head(modtab)
 6 mod_2_1   -3.628225 0.28483653 0.08654198            NA        NA 436.4745 447.9169  7.431177 0.0159061784 4.478287 0.03156964
 
 ```
+## Model averaging based on an information criterion
+
+## Relative importance of predictors  
+
+## Compute model-averaged predictions 
+
 
 
