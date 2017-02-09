@@ -24,5 +24,8 @@ library(RRreg);library(rrtmodavg)
 ```
 
 ## Automated model selection
-The function `modtable()` generates all possible model combinations starting from a set of global set of predictors.
-The function can optional generate 
+The function `modtable()` generates all possible model combinations and ranks the models using the AIC or BIC.
+The function can optionally generate specific model combinations e.g. models containing all 
+3-variable combinations, 4-variable combinations etc. 
+
+
