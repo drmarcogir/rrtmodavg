@@ -59,6 +59,9 @@ models with the highest weight (Akaike or BIC weight) and adding to the model wi
 next highest weight until the cumulative sum of weights exceeds 0.95.
 
 ```r
+#' @ intable = model selection table calculated with the function modtable
+#' @ index = 
+
 # perform model averaging
 modavgres<-modavgrrt(intable=modtab,index="BIC")
 
