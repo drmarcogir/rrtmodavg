@@ -89,8 +89,7 @@ by Burnham & Anderson (2003) and Cade (2015). First a 95% confidence set of mode
 This is achieved by summing the model weights from the largest to the smallest until the sum is 0.95.
 Variable importance is then calculated as the sum of the model weights over all models including the
 explanatory variable (Burnham & Anderson 2003) or as the average of the ratio of absolute values of the t statistic  over all 
-models including the explanatory variable for unstandardized predictors, weighted by 
-Akaike or BIC weights (Cade 2015).
+models including the explanatory variable, weighted by Akaike or BIC weights (Cade 2015).
 
 
 Sum of ‘Akaike weights’ over all models including the explanatory variable.
