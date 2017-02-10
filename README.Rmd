@@ -87,9 +87,9 @@ head(modavgres)
 The function `imprrt()` calculates variable importance following the methods developed
 by Burnham & Anderson (2003) and Cade (2015). First a 95% confidence set of models is constructed. 
 This is achieved by summing the model weights from the largest to the smallest until the sum is 0.95.
-Variable importance is then calculated as sum of the model weights over all models including the
-explanatory variable (Burnham & Anderson 2003) or an average of the ratio of absolute values of the t statistic  over all 
-models including the explanatory variable for unstandardized predictors, weightned by 
+Variable importance is then calculated as the sum of the model weights over all models including the
+explanatory variable (Burnham & Anderson 2003) or as the average of the ratio of absolute values of the t statistic  over all 
+models including the explanatory variable for unstandardized predictors, weighted by 
 Akaike or BIC weights (Cade 2015).
 
 
