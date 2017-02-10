@@ -54,7 +54,12 @@ head(modtab)
 ```
 ## Model averaging based on an information criterion
 The function `modavgrrt()` performs model averaging following the methods proposed by
-(Burnham & Anderson 2003). Model averaging is performed on the 95% confidence set of models by starting with the 
+(Burnham & Anderson 2003). Model averaging is performed on the 95% confidence set of models. 
+A 95% confidence set of models selected by starting with the model displaying the 
+highest weight (Akaike or BIC weight)
+and adding to the model with the next highest weight until the cumulative sum of weights exceeds 0.95
+
+by starting with the 
 models with the highest weight (Akaike or BIC weight) and adding to the model with the
 next highest weight until the cumulative sum of weights exceeds 0.95.
 
@@ -80,8 +85,8 @@ head(modavgres)
 ## Relative importance of predictors
 
 The function `imprrt()` calculates variable importance following the methods developed
-by Burnham & Anderson (2003) and Cade (2015). First a 95% confidence set of models selected by starting with the 
-models with the highest weight (Akaike or BIC weight) and adding to the model with the
+by Burnham & Anderson (2003) and Cade (2015). First a 95% confidence set of models is selected by starting with 
+the highest weight (Akaike or BIC weight) and adding to the model with the
 next highest weight until the cumulative sum of weights exceeds 0.95. Variable
 importance is then calculated as sum of the model weights over all models including the
 explanatory variable (Burnham & Anderson 2003) or an average of the ratio of absolute values of the t statistic  over all 
@@ -108,7 +113,7 @@ head(impres)
 
 ## Compute model-averaged fitted values
 
-The function `predrrt()` calculates model-averaged fitted values Firsta a 95% confidence set of models selected by starting with the models with the highest weight (Akaike or BIC weight) and adding to the model with the next highest weight until the cumulative sum of weights exceeds 0.95. Fitted values are calculated...
+The function `predrrt()` calculates model-averaged fitted values Firsta a 95% confidence set of models selected by starting with the models with the highest weight (Akaike or BIC weight) and adding to the model with the next highest weight until the cumulative sum of weights exceeds 0.95. Fitted are the weighted average of the fitted values of all the models across the confidence set, where weights are Aikaike or BIC weights. 
 
 
 
