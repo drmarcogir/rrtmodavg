@@ -56,8 +56,9 @@ head(modtab)
 The function `modavgrrt()` performs model averaging following the methods proposed by
 Burnham & Anderson (2003). Model averaging is performed on the 95% confidence set of models. 
 This is achieved by summing the model weights from the largest to the smallest until the sum is 0.95.
-Model-averaged coefficients are calculated as the weighted mean of the coefficients across
-the 95% confidence set, weighted by Akaike or BIC weights.
+Model-averaged coefficients are calculated as the weighted average of the coefficients across
+the confidence set, where weights are Aikaike or BIC weights.
+
 
 ```r
 #' @ intable = model selection table calculated with the function modtable
@@ -107,9 +108,7 @@ head(impres)
 
 
 ## Compute model-averaged fitted values
-The function `predrrt()` calculates model-averaged fitted values Firsta a 95% confidence set of models selected by starting with the models with the highest weight (Akaike or BIC weight) and adding to the model with the next highest weight until the cumulative sum of weights exceeds 0.95. Fitted are the weighted average of the fitted values of all the models across the confidence set, where weights are Aikaike or BIC weights. 
-
-
+The function `predrrt()` calculates model-averaged fitted values Firsta a 95% confidence set of models selected by starting with the models with the highest weight (Akaike or BIC weight) and adding to the model with the next highest weight until the cumulative sum of weights exceeds 0.95. Model-averaged fitted values are calculated as the weighted average of the fitted values of all the models across the confidence set, where weights are Aikaike or BIC weights. 
 
 ```r
 #' @ intable = model selection table calculated with the function modtable
