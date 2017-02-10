@@ -97,6 +97,10 @@ Akaike or BIC weights (Cade 2015).
 Sum of ‘Akaike weights’ over all models including the explanatory variable.
 
 ```r
+#' @ intable = model selection table calculated with the function modtable
+#' @ index = information criterion to be used i.e. AIC or BIC
+#' @ method = "burand" to use Burnham & Anderson's method or "cade" to use Cade's method
+
 # calculate relative importance of predictors
 impres<-imprrt(intable=modtab,index="BIC",method="cade")
 
