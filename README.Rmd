@@ -83,9 +83,12 @@ The function `imprrt()` calculates variable importance following the methods dev
 (Burnham & Anderson 2003) and Cade (2015). Firsta a 95% confidence set of models selected by starting with the 
 models with the highest weight (Akaike or BIC weight) and adding to the model with the
 next highest weight until the cumulative sum of weights exceeds 0.95. Variable
-importance is then calculated as sum of the frequency  (Burnham & Anderson 2003) or 
-using the ratio of absolute values of the t statistics for unstandardized predictors Cade (2015).
+importance is then calculated as sum of the model weights over all models including the
+explanatory variable (Burnham & Anderson 2003) or the average as the ratio of absolute values of the t statistics 
+for unstandardized predictors where weights are model weights Cade (2015).
 
+
+Sum of ‘Akaike weights’ over all models including the explanatory variable.
 
 ```r
 # calculate relative importance of predictors
@@ -105,6 +108,8 @@ head(impres)
 ## Compute model-averaged fitted values
 
 The function `predrrt()` calculates model-averaged fitted values Firsta a 95% confidence set of models selected by starting with the models with the highest weight (Akaike or BIC weight) and adding to the model with the next highest weight until the cumulative sum of weights exceeds 0.95. Fitted values are calculated...
+
+
 
 ```r
 # calculate model-averaged fitted values
