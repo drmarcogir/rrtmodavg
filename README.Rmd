@@ -54,7 +54,9 @@ head(modtab)
 ```
 ## Model averaging based on an information criterion
 The function `modavgrrt()` performs model averaging following the methods proposed by
-Burnham & Anderson (2009). Model averaging is performed on a 95% confidence set.
+Model averaging is performed on the 95% confidence set of models by starting with the 
+models with the highest weight (Akaike or BIC weight) and adding to the model with the
+next highest weight until the cumulative sum of weights exceeds 0.95 (Burnham & Anderson 2003).
 
 ```r
 # perform model averaging
@@ -100,3 +102,10 @@ head(fitres)
 [1] 0.3674067 0.2862663 0.2492794 0.1649464 0.2559161 0.2531186
 
 ```
+
+References
+
+Burnham, K. P., & Anderson, D. R. (2003). Model selection and multimodel inference: a practical information-theoretic approach. Springer Science & Business Media.
+
+Cade, B. S. (2015). Model averaging and muddled multimodel inferences. Ecology, 96(9), 2370-2382.
+
