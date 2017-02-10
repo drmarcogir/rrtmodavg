@@ -54,9 +54,7 @@ head(modtab)
 ```
 ## Model averaging based on an information criterion
 The function `modavgrrt()` performs model averaging following the methods proposed by
-Burnham & Anderson (2003). Model averaging is performed on a 95% confidence set of models. 
-This is selected by summing the model weights from the largest to the smallest until the sum is 0.95.
-Model-averaged coefficients are calculated as the weighted average of the coefficients across
+Burnham & Anderson (2003). First a 95% confidence set of models is selected by summing the model weights from the largest to the smallest until the sum is 0.95. Model-averaged coefficients are calculated as the weighted average of the coefficients across
 the confidence set, where weights are Aikaike or BIC weights.
 
 
