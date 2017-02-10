@@ -60,7 +60,7 @@ next highest weight until the cumulative sum of weights exceeds 0.95.
 
 ```r
 #' @ intable = model selection table calculated with the function modtable
-#' @ index = 
+#' @ index = information criterion to be used i.e. AIC or BIC
 
 # perform model averaging
 modavgres<-modavgrrt(intable=modtab,index="BIC")
