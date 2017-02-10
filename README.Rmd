@@ -54,7 +54,7 @@ head(modtab)
 ```
 ## Model averaging based on an information criterion
 The function `modavgrrt()` performs model averaging following the methods proposed by
-(Burnham & Anderson 2003). Model averaging is performed on the 95% confidence set of models. 
+Burnham & Anderson (2003). Model averaging is performed on the 95% confidence set of models. 
 A 95% confidence set of models selected by starting with the model displaying the 
 highest weight (Akaike or BIC weight)
 and adding to the model with the next highest weight until the cumulative sum of weights exceeds 0.95
@@ -85,10 +85,9 @@ head(modavgres)
 ## Relative importance of predictors
 
 The function `imprrt()` calculates variable importance following the methods developed
-by Burnham & Anderson (2003) and Cade (2015). First a 95% confidence set of models is selected by starting with 
-the highest weight (Akaike or BIC weight) and adding to the model with the
-next highest weight until the cumulative sum of weights exceeds 0.95. Variable
-importance is then calculated as sum of the model weights over all models including the
+by Burnham & Anderson (2003) and Cade (2015). First a 95% confidence set of models is constructed. 
+This is achieved by summing the model weights from the largest to the smallest until the sum is 0.95.
+Variable importance is then calculated as sum of the model weights over all models including the
 explanatory variable (Burnham & Anderson 2003) or an average of the ratio of absolute values of the t statistic  over all 
 models including the explanatory variable for unstandardized predictors, weightned by 
 Akaike or BIC weights (Cade 2015).
