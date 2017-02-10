@@ -56,7 +56,7 @@ head(modtab)
 The function `modavgrrt()` performs model averaging following the methods proposed by
 (Burnham & Anderson 2003). Model averaging is performed on the 95% confidence set of models by starting with the 
 models with the highest weight (Akaike or BIC weight) and adding to the model with the
-next highest weight until the cumulative sum of weights exceeds 0.95 (Burnham & Anderson 2003).
+next highest weight until the cumulative sum of weights exceeds 0.95.
 
 ```r
 # perform model averaging
