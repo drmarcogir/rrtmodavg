@@ -37,6 +37,7 @@ The function can optionally generate specific model combinations e.g. models con
 #' @ df =dataframe name containing predictor and response variables
 #' @ combos = integer specifying desired variable combinations. e.g. 3 for models containing
 #' @ all 3-variable combinations. For all possible model combinations specify "all".
+#' @ inp = randomization probabilities. A numerical vector specifying randomization probabilities (e.g. c(0.1,0.1). If not specificied default is c(0.1,0.1). 
 
 # fit all model combinations to a dummy dataset
 modtab<- modtable(y = "response", x = c("pred1","pred2","pred3","pred4"),df=dummy, combos ="all")
