@@ -5,14 +5,14 @@
 #'  @ intable=table from model selection results 
 #'  @ index=model selection index to be used i.e. BIC or AIC 
 #'####################################################################
-modavgrrt<-function(intable=NULL,index=NULL,bin.factors=TRUE,delta4=NULL){
+modavgrrt<-function(intable=NULL,index=NULL,bin.factors=TRUE,delta=NULL){
     if((index=="AIC")==TRUE){
         index=c("weightAIC")
     }
     if((index=="BIC")==TRUE){
         index=("weightBIC")
     }
-    if(is.null(delta4)==TRUE){
+    if(is.null(delta)==TRUE){
         intable$cumsum<-cumsum(intable[,index])
         rown<-subset(intable,cumsum >= 0.95)
         rown1<-min(as.numeric(row.names(rown)))
@@ -21,9 +21,9 @@ modavgrrt<-function(intable=NULL,index=NULL,bin.factors=TRUE,delta4=NULL){
         totcols1<-totcols[2:(length(totcols)-7)]
         intable_95a<-intable_95[,totcols1]    
     }
-    if(delta4==TRUE){
+    if(!is.null(delta)==TRUE){
         index1<-paste("delta",substring(index, 7, 10),sep="")
-        intable_95<-intable[intable[,index1] <= 4,]
+        intable_95<-intable[intable[,index1] <= delta,]
         totcols<-1:dim(intable)[2]
         totcols1<-totcols[2:(length(totcols)-7)]
         intable_95a<-intable_95[,totcols1]  
