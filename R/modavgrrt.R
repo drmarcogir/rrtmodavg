@@ -5,20 +5,29 @@
 #'  @ intable=table from model selection results 
 #'  @ index=model selection index to be used i.e. BIC or AIC 
 #'####################################################################
-modavgrrt<-function(intable=NULL,index=NULL,bin.factors=TRUE){
+modavgrrt<-function(intable=NULL,index=NULL,bin.factors=TRUE,delta4=NULL){
     if((index=="AIC")==TRUE){
         index=c("weightAIC")
     }
     if((index=="BIC")==TRUE){
         index=("weightBIC")
     }
-    intable$cumsum<-cumsum(intable[,index])
-    rown<-subset(intable,cumsum >= 0.95)
-    rown1<-min(as.numeric(row.names(rown)))
-    intable_95<-intable[1:rown1,]
-    totcols<-1:dim(intable)[2]
-    totcols1<-totcols[2:(length(totcols)-7)]
-    intable_95a<-intable_95[,totcols1]
+    if(delta4==FALSE){
+        intable$cumsum<-cumsum(intable[,index])
+        rown<-subset(intable,cumsum >= 0.95)
+        rown1<-min(as.numeric(row.names(rown)))
+        intable_95<-intable[1:rown1,]
+        totcols<-1:dim(intable)[2]
+        totcols1<-totcols[2:(length(totcols)-7)]
+        intable_95a<-intable_95[,totcols1]    
+    }
+    if(delta4==TRUE){
+        index1<-paste("delta",substring(index, 7, 10),sep="")
+        intable_95<-intable[intable[,index1] <= 4,]
+        totcols<-1:dim(intable)[2]
+        totcols1<-totcols[2:(length(totcols)-7)]
+        intable_95a<-intable_95[,totcols1]  
+    }
     # get only data for specific variables
 #   nums <- sapply(intable_95a, is.numeric)
 #   intable_95a<-intable_95a[ , nums]
