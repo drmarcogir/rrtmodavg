@@ -24,6 +24,7 @@ What follows is some simple examples of how this package can be used to analyse 
 library(RRreg);library(rrtmodavg)
 library(gtools);library(MuMIn)
 library(tidyr);library(dplyr)
+library(stringi)
 ```
 
 ## Automated model selection
