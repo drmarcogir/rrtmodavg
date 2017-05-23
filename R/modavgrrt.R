@@ -12,7 +12,7 @@ modavgrrt<-function(intable=NULL,index=NULL,bin.factors=TRUE,delta4=NULL){
     if((index=="BIC")==TRUE){
         index=("weightBIC")
     }
-    if(is.null(delta4)){
+    if(is.null(delta4)==TRUE){
         intable$cumsum<-cumsum(intable[,index])
         rown<-subset(intable,cumsum >= 0.95)
         rown1<-min(as.numeric(row.names(rown)))
