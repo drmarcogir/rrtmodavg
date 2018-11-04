@@ -15,7 +15,7 @@ library(rrtmodavg)
 ``` 
 
 # Example usage
-What follows is some simple examples of how this package can be used to analyse data collected using a randomized response design. 
+Below are some simple examples of how this package can be used to analyse data collected using a randomized response design. 
 
 ## Required Packages
 
