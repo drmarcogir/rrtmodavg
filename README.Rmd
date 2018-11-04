@@ -2,8 +2,7 @@
 *Marco Girardello* (marco.girardello@gmail.com) 
 
 An R package for model selection and multi-model inference for Randomized Response Logistic Regression 
-Models. The package includes functions for model selection and model-averaging for RRlog models, computed using 
-the RRreg package.
+Models. The package includes functions for model selection and model-averaging for RRlog models, computed using the RRreg package.
 
 The package can be installed by typing:
 
