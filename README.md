@@ -7,7 +7,7 @@ Models. The package includes functions for model selection and model-averaging f
 The package can be installed by typing:
 
 ```r
-# the devtools package is needed to be able to load the package
+# the devtools package is needed in order to be able to install the package
 # install.packages("devtools")
 library(devtools)
 install_github("drmarcogir/rrtmodavg")
